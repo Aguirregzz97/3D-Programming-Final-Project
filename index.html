@@ -9,6 +9,7 @@
 	</head>
 	<body>
 		<script src="js/three.js"></script>
+		<script src="js/OrbitControls.js"></script>
 		<script>
 
 			// Creating the scene with a prespective camera
@@ -27,6 +28,17 @@
 			// appending renderer to DOM
 			document.body.appendChild( renderer.domElement )
 
+			const controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+			//controls.update() must be called after any manual changes to the camera's transform
+			controls.update();
+
+			function animate() {
+				requestAnimationFrame( animate );
+				// required if controls.enableDamping or controls.autoRotate are set to true
+				controls.update();
+				renderer.render( scene, camera );
+			}
 
 			// Listener to make scene responsive
 			window.addEventListener('resize', () => {
@@ -91,7 +103,7 @@
 
 			// add objecty to scene
 			scene.add(mesh)
-			
+
 			//********************************
 			//Edificio 2
 
@@ -204,10 +216,10 @@
 			geometry = new THREE.BoxGeometry(1, 2.5, 1)
 			material = new THREE.MeshLambertMaterial({ color: 0x32527b })
 			mesh = new THREE.Mesh(geometry, material)
-			
+
 			mesh.position.x = -1
 			mesh.position.y = -.5
-			
+
 
 			// add objecty to scene
 			scene.add(mesh)
@@ -218,13 +230,41 @@
 
 			// cuerpo
 			geometry = new THREE.BoxGeometry(0.5, 0.5, 1)
-			material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
-			mesh = new THREE.Mesh(geometry, material)
-			
+
+			//PISO
+			// instantiate a loader
+			var loader = new THREE.TextureLoader();
+
+			// load a resource
+			const pikachu_texture = loader.load('textures/pikachu_face.png',
+				function ( texture ) {
+					// we create the material when the texture is loaded
+					const material = new THREE.MeshBasicMaterial( { map: texture } );
+				},
+				// onProgress callback currently not supported
+				undefined,
+				// onError callback
+				function ( err ) {
+					console.error( 'Error cargando la textura del piso.' );
+				}
+			);
+
+
+			var materials = [
+			 new THREE.MeshLambertMaterial({ color: 0xedd80b }),
+       new THREE.MeshLambertMaterial({ color: 0xedd80b }),
+       new THREE.MeshLambertMaterial({ color: 0xedd80b }),
+       new THREE.MeshLambertMaterial({ color: 0xedd80b }),
+			 new THREE.MeshBasicMaterial({ map: pikachu_texture }),
+       new THREE.MeshLambertMaterial({ color: 0xedd80b }),
+       new THREE.MeshLambertMaterial({ color: 0xedd80b })
+    ];
+			mesh = new THREE.Mesh(geometry, materials)
+
 			mesh.position.x = 0.5
 			mesh.position.y = -1
 			mesh.position.z = 3
-			
+
 			scene.add(mesh)
 
 			// pies
@@ -234,7 +274,7 @@
 			var z = 3.4
 
 			for (let i = 0; i < 4; i++) {
-				
+
 				if(i == 1){
 					x += 0.355
 				}else if(i == 2){
@@ -246,11 +286,11 @@
 				geometry = new THREE.BoxGeometry(0.15, 0.2, .15)
 				material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
 				mesh = new THREE.Mesh(geometry, material)
-				
+
 				mesh.position.x = x
 				mesh.position.y = y
 				mesh.position.z = z
-				
+
 				scene.add(mesh)
 			}
 
@@ -265,11 +305,11 @@
 				geometry = new THREE.BoxGeometry(0.1, 0.3, .15)
 				material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
 				mesh = new THREE.Mesh(geometry, material)
-				
+
 				mesh.position.x = x
 				mesh.position.y = y
 				mesh.position.z = z
-				
+
 				scene.add(mesh)
 
 				x += 0.355
@@ -284,11 +324,11 @@
 				geometry = new THREE.BoxGeometry(0.1, 0.1, .15)
 				material = new THREE.MeshLambertMaterial({ color: 0x48310e  })
 				mesh = new THREE.Mesh(geometry, material)
-				
+
 				mesh.position.x = x
 				mesh.position.y = y
 				mesh.position.z = z
-				
+
 				scene.add(mesh)
 
 				x += 0.355
@@ -303,34 +343,54 @@
 			geometry = new THREE.BoxGeometry(0.2, 0.5, .15)
 			material = new THREE.MeshLambertMaterial({ color: 0xedd80b  })
 			mesh = new THREE.Mesh(geometry, material)
-				
+
 			mesh.position.x = x
 			mesh.position.y = y
 			mesh.position.z = z
-				
+
 			scene.add(mesh)
 
 			geometry = new THREE.BoxGeometry(0.4, 0.3, .15)
 			material = new THREE.MeshLambertMaterial({ color: 0xedd80b  })
 			mesh = new THREE.Mesh(geometry, material)
-				
+
 			mesh.position.x = x + 0.2
 			mesh.position.y = y + 0.1
 			mesh.position.z = z
-				
+
 			scene.add(mesh)
 
 
 			//PISO
+			// instantiate a loader
+			var loader = new THREE.TextureLoader();
+
+			// load a resource
+			const floor_texture = loader.load('textures/floor_1.jpg',
+				function ( texture ) {
+					// we create the material when the texture is loaded
+					const material = new THREE.MeshBasicMaterial( { map: texture } );
+				},
+				// onProgress callback currently not supported
+				undefined,
+				// onError callback
+				function ( err ) {
+					console.error( 'Error cargando la textura del piso.' );
+				}
+			);
+
+			floor_texture.wrapS = THREE.RepeatWrapping;
+			floor_texture.wrapT = THREE.RepeatWrapping;
+			floor_texture.repeat.set( 4, 4 );
 
 			geometry = new THREE.BoxGeometry(10, 0.1, 6)
-			material = new THREE.MeshLambertMaterial({ color: 0x3a92dd })
+			material = new THREE.MeshBasicMaterial( { map: floor_texture } );
 			mesh = new THREE.Mesh(geometry, material)
-			
+
 			mesh.position.x = 0
 			mesh.position.y = -2
 			mesh.position.z = 0
-			
+
 			scene.add(mesh)
 
 
@@ -354,7 +414,7 @@
 
 				renderer.render(scene, camera)
 			}
-			
+
 			render()
 
 		</script>
