@@ -251,7 +251,6 @@
 			// cuerpo
 			geometry = new THREE.BoxGeometry(0.5, 0.5, 1)
 
-			//PISO
 			// instantiate a loader
 			var loader = new THREE.TextureLoader();
 
@@ -279,122 +278,161 @@
        new THREE.MeshLambertMaterial({ color: 0xedd80b }),
        new THREE.MeshLambertMaterial({ color: 0xedd80b })
     ];
-			mesh = new THREE.Mesh(geometry, materials)
+			mesh3 = new THREE.Mesh(geometry, materials)
 
-			mesh.position.x = 0.5
-			mesh.position.y = -1
-			mesh.position.z = 3
+			mesh3.position.x = 0.5
+			mesh3.position.y = -1
+			mesh3.position.z = 3
 
-			mesh.castShadow = true
-			mesh.receiveShadow = true
+			mesh3.castShadow = true
+			mesh3.receiveShadow = true
 
-			scene.add(mesh)
-
-			// pies
-			//parametros de inicio :pie izquierdo-adelante
-			y = -1.33
-			var x = 0.33
-			var z = 3.4
-
-			for (let i = 0; i < 4; i++) {
-
-				if(i == 1){
-					x += 0.355
-				}else if(i == 2){
-					z -= 0.72
-				}else if(i == 3){
-					x -= 0.355
-				}
-
-				geometry = new THREE.BoxGeometry(0.15, 0.2, .15)
-				material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
-				mesh = new THREE.Mesh(geometry, material)
-
-				mesh.position.x = x
-				mesh.position.y = y
-				mesh.position.z = z
-
-				mesh.castShadow = true
-				mesh.receiveShadow = true
-
-				scene.add(mesh)
-			}
-
-			//orejas
-			//Amarillo:parametros de inicio :oreja izquierda
-			y = -0.7
-			x = 0.33
-			z = 3.4
-
-			for (let i = 0; i < 2; i++) {
-
-				geometry = new THREE.BoxGeometry(0.1, 0.3, .15)
-				material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
-				mesh = new THREE.Mesh(geometry, material)
-
-				mesh.position.x = x
-				mesh.position.y = y
-				mesh.position.z = z
-
-				mesh.castShadow = true
-				mesh.receiveShadow = true
-
-				scene.add(mesh)
-
-				x += 0.355
-			}
-			//Negro:parametros de inicio :oreja izquierda
-			y = -0.5
-			x = 0.33
-			z = 3.4
-
-			for (let i = 0; i < 2; i++) {
-
-				geometry = new THREE.BoxGeometry(0.1, 0.1, .15)
-				material = new THREE.MeshLambertMaterial({ color: 0x48310e  })
-				mesh = new THREE.Mesh(geometry, material)
-
-				mesh.position.x = x
-				mesh.position.y = y
-				mesh.position.z = z
+			scene.add(mesh3)
 
 
-				mesh.castShadow = true
-				mesh.receiveShadow = true
+			// pie izquierdo-adelante
+			geometry = new THREE.BoxGeometry(0.15, 0.2, .15)
+			material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
+			mesh4 = new THREE.Mesh(geometry, material)
 
-				scene.add(mesh)
+			mesh4.position.x = 0.33
+			mesh4.position.y = -1.33
+			mesh4.position.z = 3.42
 
-				x += 0.355
-			}
+			mesh4.castShadow = true
+			mesh4.receiveShadow = true
 
-			//relampago
-			//
-			y = -0.6
-			x = .55
-			z = 2.4
+			scene.add(mesh4)
 
+			// pie derecho adelante
+			geometry = new THREE.BoxGeometry(0.15, 0.2, .15)
+			material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
+			mesh5 = new THREE.Mesh(geometry, material)
+
+			mesh5.position.x = 0.685
+			mesh5.position.y = -1.33
+			mesh5.position.z = 3.42
+
+			mesh5.castShadow = true
+			mesh5.receiveShadow = true
+
+			scene.add(mesh5)
+
+
+			// pie derecho atras
+			geometry = new THREE.BoxGeometry(0.15, 0.2, .15)
+			material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
+			mesh6 = new THREE.Mesh(geometry, material)
+
+			mesh6.position.x = 0.685
+			mesh6.position.y = -1.33
+			mesh6.position.z = 2.58
+
+			mesh6.castShadow = true
+			mesh6.receiveShadow = true
+
+			scene.add(mesh6)
+
+
+			// pie izq atras
+			geometry = new THREE.BoxGeometry(0.15, 0.2, .15)
+			material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
+			mesh7 = new THREE.Mesh(geometry, material)
+
+			mesh7.position.x = 0.33
+			mesh7.position.y = -1.33
+			mesh7.position.z = 2.58
+
+			mesh7.castShadow = true
+			mesh7.receiveShadow = true
+
+			scene.add(mesh7)
+
+
+			// oreja izquierda negro
+			geometry = new THREE.BoxGeometry(0.1, 0.3, .15)
+			material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
+			mesh8 = new THREE.Mesh(geometry, material)
+
+			mesh8.position.x = 0.33
+			mesh8.position.y = -0.7
+			mesh8.position.z = 3.4
+
+			mesh8.castShadow = true
+			mesh8.receiveShadow = true
+
+			scene.add(mesh8)
+
+
+
+			// oreja derecha amarillo
+			geometry = new THREE.BoxGeometry(0.1, 0.3, .15)
+			material = new THREE.MeshLambertMaterial({ color: 0xedd80b })
+			mesh9 = new THREE.Mesh(geometry, material)
+
+			mesh9.position.x = 0.685
+			mesh9.position.y = -0.7
+			mesh9.position.z = 3.4
+
+			mesh9.castShadow = true
+			mesh9.receiveShadow = true
+
+			scene.add(mesh9)
+
+
+			// oreja izq negro
+			geometry = new THREE.BoxGeometry(0.1, 0.1, .15)
+			material = new THREE.MeshLambertMaterial({ color: 0x48310e  })
+			mesh10 = new THREE.Mesh(geometry, material)
+
+			mesh10.position.x = 0.33
+			mesh10.position.y = -0.5
+			mesh10.position.z = 3.4
+
+			mesh10.castShadow = true
+			mesh10.receiveShadow = true
+
+			scene.add(mesh10)
+
+
+			// oreja der amarillo
+			geometry = new THREE.BoxGeometry(0.1, 0.1, .15)
+			material = new THREE.MeshLambertMaterial({ color: 0x48310e  })
+			mesh11 = new THREE.Mesh(geometry, material)
+
+			mesh11.position.x = 0.685
+			mesh11.position.y = -0.5
+			mesh11.position.z = 3.4
+
+			mesh11.castShadow = true
+			mesh11.receiveShadow = true
+
+			scene.add(mesh11)
+
+			// relampago
 			geometry = new THREE.BoxGeometry(0.2, 0.5, .15)
 			material = new THREE.MeshLambertMaterial({ color: 0xedd80b  })
-			mesh = new THREE.Mesh(geometry, material)
+			mesh12 = new THREE.Mesh(geometry, material)
 
-			mesh.position.x = x
-			mesh.position.y = y
-			mesh.position.z = z
+			mesh12.position.x = .55
+			mesh12.position.y = -0.6
+			mesh12.position.z = 2.4
 
-			scene.add(mesh)
+			scene.add(mesh12)
+
 
 			geometry = new THREE.BoxGeometry(0.4, 0.3, .15)
 			material = new THREE.MeshLambertMaterial({ color: 0xedd80b  })
-			mesh = new THREE.Mesh(geometry, material)
+			mesh13 = new THREE.Mesh(geometry, material)
 
-			mesh.position.x = x + 0.2
-			mesh.position.y = y + 0.1
-			mesh.position.z = z
+			mesh13.position.x = 0.75
+			mesh13.position.y = -0.38
+			mesh13.position.z = 2.4
 
-			mesh.castShadow = true
-			mesh.receiveShadow = true
+			mesh13.castShadow = true
+			mesh13.receiveShadow = true
 
-			scene.add(mesh)
+			scene.add(mesh13)
 
 
 			//PISO
@@ -437,12 +475,30 @@
 			//**********************************
 
 
-
+			
+			var translation = 0.01
 
 			// render scene and camera without distorting aspect ratio
 			var render = () => {
 				requestAnimationFrame(render)
-
+				console.log(mesh3.position.z)
+				if (mesh3.position.z >= 6) {
+					translation *= -1
+				}
+				if (mesh3.position.z < 3) {
+					translation *= -1
+				}
+				mesh3.position.z += translation
+				mesh4.position.z += translation
+				mesh5.position.z += translation
+				mesh6.position.z += translation
+				mesh7.position.z += translation
+				mesh8.position.z += translation
+				mesh9.position.z += translation
+				mesh10.position.z += translation
+				mesh11.position.z += translation
+				mesh12.position.z += translation
+				mesh13.position.z += translation
 				renderer.render(scene, camera)
 			}
 
