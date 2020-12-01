@@ -457,7 +457,8 @@
 			floor_texture.wrapT = THREE.RepeatWrapping;
 			floor_texture.repeat.set( 4, 4 );
 
-			geometry = new THREE.BoxGeometry(20, 0.1, 20)
+			//geometry = new THREE.BoxGeometry(20, 0.1, 20)
+			geometry = new THREE.BoxGeometry(10, 0.1, 13)
 			// material = new THREE.MeshBasicMaterial( { map: floor_texture } );
 			material = new THREE.MeshLambertMaterial({ map: floor_texture })
 			mesh2 = new THREE.Mesh(geometry, material)
@@ -471,7 +472,16 @@
 
 			scene.add(mesh2)
 
+			//**********************************
+			// Add light to our scene
+			var light = new THREE.PointLight(0xFFFFFF, 1, 500)
+			light.position.set(0, 0, 2)
+			scene.add(light)
 
+			// Add light to our scene
+			var light = new THREE.PointLight(0xFFFFFF, 1, 500)
+			light.position.set(10, 0, 25)
+			scene.add(light)
 			//**********************************
 
 
